@@ -17,4 +17,4 @@ echo "Environnement virtuel activé : $(which python)"
 pip install -r requirements.txt
 
 # Démarrer l'application FastAPI
-streamlit run streamlit_app.py --server.port=8000 --server.address=0.0.0.0
+streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8000 --server.address=0.0.0.0
