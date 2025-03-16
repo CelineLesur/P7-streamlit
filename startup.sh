@@ -2,6 +2,12 @@
 
 python3 -m venv /home/site/wwwroot/venv
 
+# Extraire les fichiers du déploiement si nécessaire
+if [ -f "/home/site/wwwroot/output.tar.gz" ]; then
+    echo "Extraction de output.tar.gz..."
+    tar -xvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot/
+fi
+
 # Vérifier si l'environnement est Windows ou Linux/Mac
 if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "darwin"* ]]; then
     # Si c'est Linux/Mac, activer l'environnement virtuel (Linux/Mac)
