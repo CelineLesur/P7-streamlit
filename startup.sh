@@ -17,8 +17,7 @@ which pip
 pip --version
 
 echo "➡️  Installation des dépendances..."
-pip install -r /home/site/wwwroot/requirements.txt
+pip install --no-cache-dir -r /home/site/wwwroot/requirements.txt
 
-echo "✅  Lancement de Streamlit sur le port 8501..."
-
+echo "✅  Lancement de Streamlit sur le port 8181..."
 streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8181 --server.address=0.0.0.0
