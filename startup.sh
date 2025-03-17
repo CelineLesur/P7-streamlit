@@ -1,6 +1,6 @@
 #!/bin/bash
 
-python3 -m venv /home/site/wwwroot/venv
+# python3 -m venv /home/site/wwwroot/venv
 
 # Extraire les fichiers du déploiement si nécessaire
 if [ -f "/home/site/wwwroot/output.tar.gz" ]; then
@@ -8,13 +8,15 @@ if [ -f "/home/site/wwwroot/output.tar.gz" ]; then
     tar -xvf /home/site/wwwroot/output.tar.gz -C /home/site/wwwroot/
 fi
 
+cd /home/site/wwwroot
+
 # Vérifier si l'environnement est Windows ou Linux/Mac
 if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "darwin"* ]]; then
     # Si c'est Linux/Mac, activer l'environnement virtuel (Linux/Mac)
-    source /home/site/wwwroot/venv/bin/activate
+    source antenv/bin/activate
 elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "win32" ]]; then
     # Si c'est Windows, activer l'environnement virtuel avec activate.ps1 (PowerShell)
-    source /home/site/wwwroot/venv/Scripts/activate
+    source antenv/Scripts/activate
 fi
 
 # Vérification de l'environnement virtuel
@@ -23,4 +25,4 @@ echo "Environnement virtuel activé : $(which python)"
 pip install -r requirements.txt
 
 # Démarrer l'application FastAPI
-streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8000 --server.address=0.0.0.0
+streamlit run streamlit_app.py --server.port=8000 --server.address=0.0.0.0
