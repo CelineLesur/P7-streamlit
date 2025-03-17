@@ -2,9 +2,12 @@
 
 rm -rf /tmp/*
 rm -rf /home/site/wwwroot/antenv
+rm -rf /home/site/wwwroot/venv
+
+which python3
 
 echo "Vérification de pip..."
-if ! command -v pip &> /dev/null; then
+if ! command -v pip3 &> /dev/null; then
     echo "pip non trouvé, installation en cours..."
     curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
     python3 get-pip.py --user
@@ -14,21 +17,23 @@ else
     echo "pip est déjà installé."
 fi
 
-echo "➡️  Activation de l'environnement virtuel..."
-if [ -d "/home/site/wwwroot/venv" ]; then
-    python3 -m venv /home/site/wwwroot/venv
-fi
+which pip3
 
-source /home/site/wwwroot/venv/bin/activate
+# echo "➡️  Activation de l'environnement virtuel..."
+# if [ -d "/home/site/wwwroot/venv" ]; then
+#     python3 -m venv /home/site/wwwroot/venv
+# fi
 
-echo "➡️  Vérification de Python et pip..."
-which python
-python --version
-which pip
-pip --version
+# source /home/site/wwwroot/venv/bin/activate
+
+# echo "➡️  Vérification de Python et pip..."
+# which python
+# python --version
+# which pip
+# pip --version
 
 echo "➡️  Installation des dépendances..."
-pip install -r /home/site/wwwroot/requirements.txt
+pip3 install --no-cache-dir -r /home/site/wwwroot/requirements.txt
 
 echo "✅  Lancement de Streamlit sur le port 8181..."
 streamlit run /home/site/wwwroot/streamlit_app.py --server.port=${PORT} --server.address=0.0.0.0 > /home/site/wwwroot/logs.txt 2>&1 &
