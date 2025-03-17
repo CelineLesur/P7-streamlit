@@ -1,20 +1,24 @@
 #!/bin/bash
 
-python3 -m venv /home/site/wwwroot/venv
-
-# Vérifier si l'environnement est Windows ou Linux/Mac
-if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "darwin"* ]]; then
-    # Si c'est Linux/Mac, activer l'environnement virtuel (Linux/Mac)
+echo "➡️  Activation de l'environnement virtuel..."
+if [ -d "/home/site/wwwroot/venv" ]; then
     source /home/site/wwwroot/venv/bin/activate
-elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "win32" ]]; then
-    # Si c'est Windows, activer l'environnement virtuel avec activate.ps1 (PowerShell)
-    source /home/site/wwwroot/venv/Scripts/activate
+else
+    echo "⚠️  Environnement virtuel non trouvé ! Création..."
+    python3 -m venv /home/site/wwwroot/venv
+    source /home/site/wwwroot/venv/bin/activate
+    echo "✅  Environnement virtuel créé."
 fi
 
-# Vérification de l'environnement virtuel
-echo "Environnement virtuel activé : $(which python)"
+echo "➡️  Vérification de Python et pip..."
+which python
+python --version
+which pip
+pip --version
 
-pip install --user -r /home/site/wwwroot/requirements.txt
+echo "➡️  Installation des dépendances..."
+pip install -r /home/site/wwwroot/requirements.txt
 
-# Démarrer l'application FastAPI
-streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+echo "✅  Lancement de Streamlit sur le port 8501..."
+PORT=${PORT:-8501}
+streamlit run /home/site/wwwroot/streamlit_app.py --server.port=$PORT --server.address=0.0.0.0
