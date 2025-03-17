@@ -20,5 +20,5 @@ echo "➡️  Installation des dépendances..."
 pip install -r /home/site/wwwroot/requirements.txt
 
 echo "✅  Lancement de Streamlit sur le port 8501..."
-PORT=${PORT:-8181}
-streamlit run /home/site/wwwroot/streamlit_app.py --server.port=$PORT --server.address=0.0.0.0
+
+streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8181 --server.address=0.0.0.0
