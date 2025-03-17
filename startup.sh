@@ -1,3 +1,35 @@
+#!/bin/bash
+
+# 🔹 Vérifier si l'environnement virtuel existe
+if [ -d "/tmp/antenv" ]; then
+    echo "Activation de l'environnement virtuel existant..."
+    source /tmp/antenv/bin/activate
+else
+    echo "Création d'un nouvel environnement virtuel..."
+    python3 -m venv /tmp/antenv
+    source /tmp/antenv/bin/activate
+    pip install --upgrade pip
+    pip install -r /home/site/wwwroot/requirements.txt
+fi
+
+echo "Vérification de pip..."
+if ! command -v pip &> /dev/null; then
+    echo "pip non trouvé, installation en cours..."
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3 get-pip.py --user
+    export PATH=$HOME/.local/bin:$PATH
+    echo "pip installé avec succès."
+else
+    echo "pip est déjà installé."
+fi
+
+echo "Installation des dépendances..."
+pip install --user -r /home/site/wwwroot/requirements.txt
+
+# 🔹 Lancer Streamlit (assurez-vous que `streamlit_app.py` est bien présent)
+echo "Démarrage de Streamlit..."
+streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+
 # #!/bin/bash
 
 # # python3 -m venv /home/site/wwwroot/venv
@@ -26,22 +58,3 @@
 
 # # Démarrer l'application FastAPI
 # streamlit run streamlit_app.py --server.port=8000 --server.address=0.0.0.0
-
-#!/bin/bash
-
-echo "Vérification de pip..."
-if ! command -v pip &> /dev/null; then
-    echo "pip non trouvé, installation en cours..."
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python3 get-pip.py --user
-    export PATH=$HOME/.local/bin:$PATH
-    echo "pip installé avec succès."
-else
-    echo "pip est déjà installé."
-fi
-
-echo "Installation des dépendances..."
-pip install --user -r /home/site/wwwroot/requirements.txt
-
-echo "Démarrage de Streamlit..."
-streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8000 --server.address=0.0.0.0
