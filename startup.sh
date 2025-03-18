@@ -1,9 +1,5 @@
 #!/bin/bash
 
-rm -rf /tmp/*
-rm -rf /home/site/wwwroot/antenv
-rm -rf /home/site/wwwroot/venv
-
 which python3
 
 echo "Vérification de pip..."
