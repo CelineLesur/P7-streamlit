@@ -1,8 +1,9 @@
 #!/bin/bash
 
+echo "🔍 [DEBUG] Creation of venv ..." >> /home/site/wwwroot/startup.log
 python3 -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
 
-# Vérifier si l'environnement est Windows ou Linux/Mac
+echo "🔍 [DEBUG] Activation of venv ..." >> /home/site/wwwroot/startup.log
 source /home/site/wwwroot/venv/bin/activate >> /home/site/wwwroot/startup.log 2>&1
 
 # Vérification de l'environnement virtuel
