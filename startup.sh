@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "🔍 [DEBUG] Creation of venv ..." >> /home/site/wwwroot/startup.log
-opt/python/3/bin/python3 -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
+opt/python/3/bin/python3.11 -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
 
 echo "🔍 [DEBUG] Activation of venv ..." >> /home/site/wwwroot/startup.log
 source /home/site/wwwroot/venv/bin/activate >> /home/site/wwwroot/startup.log 2>&1
