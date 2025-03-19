@@ -1,26 +1,18 @@
 #!/bin/bash
 
+rm -rf /tmp/*
+
+opt/python/3/bin/python3 --version
+
 echo "🔍 [DEBUG] Creation of venv ..." >> /home/site/wwwroot/startup.log
-opt/python/3/bin/python -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
+opt/python/3/bin/python -m venv --copies /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
 
 echo "🔍 [DEBUG] Activation of venv ..." >> /home/site/wwwroot/startup.log
 source /home/site/wwwroot/venv/bin/activate >> /home/site/wwwroot/startup.log 2>&1
 
 # Vérification de l'environnement virtuel
 echo "Environnement virtuel activé : $(which python3)"
-
-echo "Vérification de pip..."
-if ! command -v pip &> /dev/null; then
-    echo "pip non trouvé, installation en cours..."
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-    python3 get-pip.py --user
-    export PATH=$HOME/.local/bin:$PATH
-    echo "pip installé avec succès."
-else
-    echo "pip est déjà installé."
-fi
-
-which pip
+python --version
 
 export PORT=8501
 
