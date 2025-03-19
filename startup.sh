@@ -1,9 +1,9 @@
 #!/bin/bash
 
-python3 -m venv /home/site/wwwroot/venv
+python3 -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
 
 # Vérifier si l'environnement est Windows ou Linux/Mac
-source /home/site/wwwroot/venv/bin/activate
+source /home/site/wwwroot/venv/bin/activate >> /home/site/wwwroot/startup.log 2>&1
 
 # Vérification de l'environnement virtuel
 echo "Environnement virtuel activé : $(which python3)"
