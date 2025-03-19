@@ -1,6 +1,18 @@
 #!/bin/bash
 
-which python3
+python3 -m venv /home/site/wwwroot/venv
+
+# Vérifier si l'environnement est Windows ou Linux/Mac
+if [[ "$OSTYPE" == "linux-gnu"* ]] || [[ "$OSTYPE" == "darwin"* ]]; then
+    # Si c'est Linux/Mac, activer l'environnement virtuel (Linux/Mac)
+    source /home/site/wwwroot/venv/bin/activate
+elif [[ "$OSTYPE" == "msys" ]] || [[ "$OSTYPE" == "cygwin" ]] || [[ "$OSTYPE" == "win32" ]]; then
+    # Si c'est Windows, activer l'environnement virtuel avec activate.ps1 (PowerShell)
+    source /home/site/wwwroot/venv/Scripts/activate
+fi
+
+# Vérification de l'environnement virtuel
+echo "Environnement virtuel activé : $(which python3)"
 
 echo "Vérification de pip..."
 if ! command -v pip3 &> /dev/null; then
