@@ -32,5 +32,5 @@ pip3 install --no-cache-dir -r /home/site/wwwroot/requirements.txt
 
 echo "✅  Lancement de Streamlit sur le port 8501..."
 # streamlit run /home/site/wwwroot/streamlit_app.py --server.port=${PORT} --server.address=0.0.0.0 > /home/site/wwwroot/logs.txt 2>&1 &
-export STREAMLIT_PORT=8501
-python3 -m streamlit run /home/site/wwwroot/streamlit_app.py --server.port=8501 --server.address=0.0.0.0
+export PORT=8501
+python3 -m streamlit run /home/site/wwwroot/streamlit_app.py --server.port=$PORT --server.address=0.0.0.0
