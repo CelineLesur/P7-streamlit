@@ -5,7 +5,8 @@ rm -rf /tmp/*
 opt/python/3/bin/python3 --version
 
 echo "🔍 [DEBUG] Creation of venv ..." >> /home/site/wwwroot/startup.log
-opt/python/3/bin/virtualenv /home/site/wwwroot/venv --always-copy >> /home/site/wwwroot/startup.log 2>&1
+# opt/python/3/bin/virtualenv /home/site/wwwroot/venv --always-copy >> /home/site/wwwroot/startup.log 2>&1
+/usr/bin/python3 -m venv /home/site/wwwroot/venv >> /home/site/wwwroot/startup.log 2>&1
 
 echo "🔍 [DEBUG] Activation of venv ..." >> /home/site/wwwroot/startup.log
 source /home/site/wwwroot/venv/bin/activate >> /home/site/wwwroot/startup.log 2>&1
