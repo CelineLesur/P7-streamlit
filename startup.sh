@@ -14,7 +14,7 @@ fi
 # Créer un environnement virtuel si nécessaire
 if [ ! -d "/home/site/wwwroot/venv" ]; then
     echo "🔍 [DEBUG] Creating virtual environment using virtualenv..." >> /home/site/wwwroot/startup.log
-    $PYTHON_PATH -m virtualenv /home/site/wwwroot/venv --always-copy
+    $PYTHON_PATH -m virtualenv /home/site/wwwroot/venv --always-copy >> /home/site/wwwroot/startup.log 2>&1
 else
     echo "🔍 [DEBUG] Virtual environment already exists." >> /home/site/wwwroot/startup.log
 fi
