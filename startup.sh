@@ -34,4 +34,4 @@ pip install --upgrade pip >> /home/site/wwwroot/startup.log 2>&1
 pip install -r /home/site/wwwroot/requirements.txt >> /home/site/wwwroot/startup.log 2>&1
 
 echo "🔍 [DEBUG] Starting Streamlit..." >> /home/site/wwwroot/startup.log
-streamlit run /home/site/wwwroot/streamlit_app.py --server.port=$PORT --server.address=0.0.0.0 >> /home/site/wwwroot/startup.log 2>&1
+/home/site/wwwroot/venv/bin/python3 -m streamlit run /home/site/wwwroot/streamlit_app.py --server.port=$PORT --server.address=0.0.0.0 >> /home/site/wwwroot/startup.log 2>&1
